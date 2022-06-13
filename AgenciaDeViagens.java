@@ -50,6 +50,9 @@ public class AgenciaDeViagens {
                 case 11:
                     informacoesPacotes();
                     break;
+                default:
+                    System.out.println("Opção inválida, tente novamente!");
+                    break;
             }
             mostraMenu();
             System.out.print("Selecione a opção desejada: ");
@@ -204,12 +207,42 @@ public class AgenciaDeViagens {
     public static void buscarPacotes() {
         s.nextLine();
         System.out.println("");
-        System.out.print("Digite o nome do pacote a ser buscado: ");
-        String nome = s.nextLine();
-        for (Pacote p : listaPacotes) {
-            if (p.getDescricao().startsWith(nome)) {
-                p.exibir();
-            }
+        System.out.println("| 1 | para buscar pela descrição");
+        System.out.println("| 2 | para buscar pelo código");
+        System.out.println("| 3 | para buscar pelo preço");
+        int opcao = s.nextInt();
+        switch (opcao) {
+            case 1:
+                System.out.print("Digite a descrição do pacote a ser buscado: ");
+                s.nextLine();
+                String descricao = s.nextLine();
+                for (Pacote p : listaPacotes) {
+                    if (p.getDescricao().startsWith(descricao)) {
+                        p.exibir();
+                    }
+                }
+                break;
+            case 2:
+                System.out.print("Digita o código do pacote a ser buscado: ");
+                int codigo = s.nextInt();
+                for (Pacote p : listaPacotes) {
+                    if (p.getCodigo() == codigo) {
+                        p.exibir();
+                    }
+                }
+                break;
+            case 3:
+                System.out.print("Digite o preço do pacote a ser buscado");
+                double preco = s.nextDouble();
+                for (Pacote p : listaPacotes) {
+                    if (p.getPreco() == preco) {
+                        p.exibir();
+                    }
+                }
+                break;
+            default:
+                System.out.println("Opção inválida, tente novamente!");
+                break;
         }
     }
 
